@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\User;
+//use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Users;
 use App\Http\Requests;
@@ -63,7 +63,7 @@ class UsersController extends Controller
             'email' => 'required'
             ]);
 
-        $create = User::create($request->all());
+        $create = Users::create($request->all());
         return response()->json($create);
     }
 
@@ -104,7 +104,7 @@ class UsersController extends Controller
             'email' => 'required'
         ]);
 
-        $edit = User::find($id)->update($request->all());
+        $edit = Users::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -116,7 +116,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        Users::find($id)->delete();
         return response()->json(['done']);
     }
 }

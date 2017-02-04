@@ -1,10 +1,9 @@
 
 @extends('master')
 @section('content')
-
     <div class="form-group row add">
         <div class="col-md-12">
-            <h1>Manage Users</h1>
+            <h1>Manage Logs</h1>
         </div>
         <div class="col-md-12">
             <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
@@ -16,14 +15,14 @@
         <div class="table-responsive">
             <table class="table table-borderless">
                 <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Description</th>
+                    <th>Hours</th>
                 </tr>
                 <tr v-for="item in items">
-                    <td>@{{ item.first_name }}</td>
-                    <td>@{{ item.last_name }}</td>
-                    <td>@{{ item.email }}</td>
+                    <td>@{{ item.role }}</td>
+                    <td>@{{ item.description}}</td>
+                    <td>@{{ item.hours }}</td>
                     <td>
                         <button class="edit-modal btn btn-warning" @click.prevent="editItem(item)">
                             <span class="glyphicon glyphicon-edit"></span> Edit
@@ -141,6 +140,4 @@
             </div>
         </div>
     </div>
-
-
 @stop

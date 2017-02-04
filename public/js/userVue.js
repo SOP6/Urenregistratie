@@ -13,8 +13,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newItem : {'first_name':'','last_name':'', 'email': ''},
-        fillItem : {'first_name':'','last_name':'','email':'','id':''}
+        newItem : {'first_name':'','last_name':'', 'email' : ''},
+        fillItem : {'first_name':'','last_name':'','email' : '' , 'id':''}
     },
     computed: {
         isActived: function() {
@@ -54,7 +54,7 @@ new Vue({
             var input = this.newItem;
             this.$http.post('/vueitems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'','email':''};
+            this.newItem = {'first_name':'','last_name':'', 'email': ''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {
@@ -68,16 +68,16 @@ new Vue({
         });
         },
         editItem: function(item) {
-            this.fillItem.title = item.title;
-            this.fillItem.id = item.id;
-            this.fillItem.description = item.description;
+            this.fillItem.first_name = item.first_name;
+            this.fillItem.last_name = item.last_name;
+            this.fillItem.email = item.email;
             $("#edit-item").modal('show');
         },
         updateItem: function(id) {
             var input = this.fillItem;
             this.$http.put('/vueitems/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'','email':'', 'id': ''};
+            this.newItem = {'first_name':'','last_name':'','email' : '','id':''};
             $("#edit-item").modal('hide');
             toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

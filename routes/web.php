@@ -13,6 +13,11 @@
 
 
 Route::group(['middleware' => ['web']], function() {
-    Route::get('/userscrud', 'UsersController@usersCrud');
+    Route::get('/users', 'UsersController@usersCrud');
     Route::resource('vueitems','UsersController');
 });
+//
+//Route::group(['middleware' => ['web']], function() {
+//    Route::get('/', 'LogsController@logsCrud');
+//    Route::resource('vueitems','LogsController');
+//});

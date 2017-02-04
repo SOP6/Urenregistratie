@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContractsTable extends Migration
+class CreateLogsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateContractsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contracts', function (Blueprint $table) {
+        Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
             /**Always user unsigned value for auto incrementing references**/
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('effective_date');
-            $table->string('expire_date');
+            $table->decimal('hours', 2,1);
+            $table->enum('roles', array('manager', 'employee'));
+            $table->string('work_description');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -32,6 +33,6 @@ class CreateContractsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('contracts');
+        Schema::drop('logs');
     }
 }

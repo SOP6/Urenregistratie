@@ -3,13 +3,12 @@
 @section('content')
 
     <div class="form-group row add">
-        <div class="col-md-12">
-            <h1>Manage Users</h1>
-        </div>
-        <div class="col-md-12">
-            <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
-                Create New User
-            </button>
+        <div class="well" style="width:150%;">
+            <div class="row">
+            <div class="col-md-12">
+                <h1>Manage Users</h1>
+            </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -34,6 +33,11 @@
                     </td>
                 </tr>
             </table>
+            <div class="col-md-12">
+                <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
+                    Create New User
+                </button>
+            </div>
         </div>
     </div>
     <nav>
@@ -55,7 +59,7 @@
             </li>
         </ul>
     </nav>
-    <!-- Create Item Modal -->
+    <!-- Create User Modal -->
     <div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -98,7 +102,7 @@
             </div>
         </div>
     </div>
-    <!-- Edit Item Modal -->
+    <!-- Edit User Modal -->
     <div class="modal fade" id="edit-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -109,7 +113,7 @@
                     <h4 class="modal-title" id="myModalLabel">Edit Users</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem.id)">
+                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem)">
                         <div class="form-group">
                             <label for="first_name">first name:</label>
                             <input type="text" name="first_name" class="form-control" v-model="fillItem.first_name" />
@@ -142,5 +146,10 @@
         </div>
     </div>
 
+
+@stop
+
+@section('includes')
+    <script type="text/javascript" src="/js/userVue.js"></script>
 
 @stop

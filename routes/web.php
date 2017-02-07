@@ -14,10 +14,18 @@
 
 Route::group(['middleware' => ['web']], function() {
     Route::get('/users', 'UsersController@usersCrud');
-    Route::resource('vueitems','UsersController');
+    Route::resource('useritems','UsersController');
 });
-//
-//Route::group(['middleware' => ['web']], function() {
-//    Route::get('/', 'LogsController@logsCrud');
-//    Route::resource('vueitems','LogsController');
-//});
+
+Route::group(['middleware' => ['web']], function() {
+    Route::get('/', 'LogsController@logsCrud');
+    Route::resource('logitems','LogsController');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

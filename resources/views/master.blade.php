@@ -24,16 +24,20 @@
     </head>
     <body>
         @include('partials.sidebar')
-            <div class="container" style="margin-left:300px;" id="manage-vue">
+
+        //style="margin-left:300px;"
+            <div class="container" class="mastercontainer"  id="manage-vue">
                 @yield('content')
             </div>
+
 
         {{--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>--}}
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.min.js"></script>
-        <script type="text/javascript" src="/js/userVue.js"></script>
+        @yield('includes')
+
     </body>
 </html>
 

@@ -7,6 +7,7 @@ use App\Logs;
 use App\Http\Requests;
 use Validator;
 use Response;
+use App\Users;
 
 class LogsController extends Controller
 {
@@ -15,6 +16,10 @@ class LogsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+//        $this->middleware('auth');
+    }
 
     public function logsCrud(){
         return view('/logscrud/index');

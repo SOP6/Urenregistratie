@@ -2,27 +2,24 @@
 @extends('master')
 @section('content')
     <div class="form-group row add">
+        <div class="well" style="width:150%;">
+            <div class="row">
         <div class="col-md-12">
             <h1>Manage Logs</h1>
         </div>
-        <div class="col-md-12">
-            <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
-                Create New User
-            </button>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="table-responsive">
             <table class="table table-borderless">
                 <tr>
-                    <th>Role</th>
-                    <th>Description</th>
-                    <th>Hours</th>
+                    <th>Work description</th>
+                    <th>hours</th>
                 </tr>
                 <tr v-for="item in items">
-                    <td>@{{ item.role }}</td>
-                    <td>@{{ item.description}}</td>
-                    <td>@{{ item.hours }}</td>
+                    <td>@{{ item.work_description }}</td>
+                    <td>@{{ item.hours}}</td>
                     <td>
                         <button class="edit-modal btn btn-warning" @click.prevent="editItem(item)">
                             <span class="glyphicon glyphicon-edit"></span> Edit
@@ -33,6 +30,11 @@
                     </td>
                 </tr>
             </table>
+            <div class="col-md-12">
+                <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
+                    Log new hours
+                </button>
+            </div>
         </div>
     </div>
     <nav>
@@ -54,7 +56,7 @@
             </li>
         </ul>
     </nav>
-    <!-- Create Item Modal -->
+    <!-- Log hours Modal -->
     <div class="modal fade" id="create-item" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -67,27 +69,20 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" v-on:submit.prevent="createItem">
                         <div class="form-group">
-                            <label for="first_name">First name:</label>
-                            <input type="text" name="first_name" class="form-control" v-model="newItem.first_name" />
-                            <span v-if="formErrors['first_name']" class="error text-danger">
-                @{{ formErrors['first_name'] }}
+                            <label for="work_description">work description</label>
+                            <input type="text" name="work_description" class="form-control" v-model="newItem.work_description" />
+                            <span v-if="formErrors['work_description']" class="error text-danger">
+                @{{ formErrors['work_description'] }}
               </span>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Last name:</label>
-                            <textarea name="last_name" class="form-control" v-model="newItem.last_name">
+                            <label for="hours">Amount(hours)</label>
+                            <textarea name="hours" class="form-control" v-model="newItem.hours">
               </textarea>
-                            <span v-if="formErrors['last_name']" class="error text-danger">
-                @{{ formErrors['last_name'] }}
+                            <span v-if="formErrors['hours']" class="error text-danger">
+                @{{ formErrors['hours'] }}
               </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <textarea name="email" class="form-control" v-model="newItem.email">
-              </textarea>
-                            <span v-if="formErrors['email']" class="error text-danger">
-                @{{ formErrors['email'] }}
-              </span>
+                            <hidden  name="user_id" v-model="newItem.user_id"></hidden>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -110,27 +105,19 @@
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem.id)">
                         <div class="form-group">
-                            <label for="first_name">first name:</label>
-                            <input type="text" name="first_name" class="form-control" v-model="fillItem.first_name" />
-                            <span v-if="formErrorsUpdate['first_name']" class="error text-danger">
-              @{{ formErrorsUpdate['first_name'] }}
-            </span>
+                            <label for="work_description">work description</label>
+                            <input type="text" name="work_description" class="form-control" v-model="newItem.work_description" />
+                            <span v-if="formErrors['work_description']" class="error text-danger">
+                @{{ formErrors['work_description'] }}
+              </span>
                         </div>
                         <div class="form-group">
-                            <label for="last_name">last names:</label>
-                            <textarea name="last_name" class="form-control" v-model="fillItem.last_name">
-            </textarea>
-                            <span v-if="formErrorsUpdate['last_name']" class="error text-danger">
-              @{{ formErrorsUpdate['last_name'] }}
-            </span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <textarea name="email" class="form-control" v-model="fillItem.email">
-            </textarea>
-                            <span v-if="formErrorsUpdate['email']" class="error text-danger">
-              @{{ formErrorsUpdate['email'] }}
-            </span>
+                            <label for="hours">Amount(hours)</label>
+                            <textarea name="hours" class="form-control" v-model="newItem.hours">
+              </textarea>
+                            <span v-if="formErrors['hours']" class="error text-danger">
+                @{{ formErrors['hours'] }}
+              </span>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -140,4 +127,9 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('includes')
+    <script type="text/javascript" src="/js/logsVue.js"></script>
+
 @stop

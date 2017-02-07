@@ -13,8 +13,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newItem : {'first_name':'','last_name':'', 'email' : ''},
-        fillItem : {'first_name':'','last_name':'','email' : '' , 'id':''}
+        newItem : {'work_description':'','hours':'', 'user_id' : ''},
+        fillItem : {'work_description':'','hours':'', 'user_id' : '', 'id' : ''},
     },
     computed: {
         isActived: function() {
@@ -45,16 +45,16 @@ new Vue({
     },
     methods: {
         getVueItems: function(page) {
-            this.$http.get('/useritems?page='+page).then((response) => {
+            this.$http.get('/logitems?page='+page).then((response) => {
                 this.$set('items', response.data.data.data);
             this.$set('pagination', response.data.pagination);
         });
         },
         createItem: function() {
             var input = this.newItem;
-            this.$http.post('/useritems',input).then((response) => {
+            this.$http.post('/logitems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'', 'email': ''};
+            this.newItem = {'word_description':'','hours':'', 'user_id': ''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {
@@ -62,7 +62,7 @@ new Vue({
             });
         },
         deleteItem: function(item) {
-            this.$http.delete('/useritems/'+item.id).then((response) => {
+            this.$http.delete('/logitems/'+item.id).then((response) => {
                 this.changePage(this.pagination.current_page);
             toastr.success('Post Deleted Successfully.', 'Success Alert', {timeOut: 5000});
         });
@@ -72,13 +72,14 @@ new Vue({
             this.fillItem.last_name = item.last_name;
             this.fillItem.email = item.email;
             this.fillItem.id = item.id;
+            this.fillItem.user_id = item.user_id;
             $("#edit-item").modal('show');
         },
         updateItem: function(item) {
             var input = this.fillItem;
-            this.$http.put('/useritems/'+item.id,input).then((response) => {
+            this.$http.put('/logitems/'+item.id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'','email' : '','id':''};
+            this.newItem = {'work_description':'','hours':'','user_id' : '','id':''};
             $("#edit-item").modal('hide');
             toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

@@ -13,7 +13,7 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newItem : {'first_name':'','last_name':'', 'email' : ''},
+        newItem : {'first_name':'','last_name':'', 'email' : '' , 'password' : ''},
         fillItem : {'first_name':'','last_name':'','email' : '' , 'id':''}
     },
     computed: {
@@ -54,7 +54,7 @@ new Vue({
             var input = this.newItem;
             this.$http.post('/useritems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'', 'email': ''};
+            this.newItem = {'first_name':'','last_name':'', 'email': '' , 'password' : ''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

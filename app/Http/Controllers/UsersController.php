@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
-use App\Users;
+use App\User;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 use Response;
 
@@ -23,7 +24,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $items = Users::latest()->paginate(5);
+        $items = User::latest()->paginate(5);
 
         $response = [
             'pagination' => [
@@ -39,15 +40,6 @@ class UsersController extends Controller
         return response()->json($response);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -60,10 +52,12 @@ class UsersController extends Controller
         $this->validate($request, [
             'last_name' => 'required',
             'first_name' => 'required',
-            'email' => 'required'
+            'email' => 'required',
+            'password' => 'required'
             ]);
 
-        $create = Users::create($request->all());
+
+        $create = User::create($request->all());
         return response()->json($create);
     }
 
@@ -104,7 +98,7 @@ class UsersController extends Controller
             'email' => 'required'
         ]);
 
-        $edit = Users::find($id)->update($request->all());
+        $edit = User::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -116,7 +110,7 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        Users::find($id)->delete();
+        User::find($id)->delete();
         return response()->json(['done']);
     }
 }

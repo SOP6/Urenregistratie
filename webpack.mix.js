@@ -15,5 +15,6 @@ mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
 
 mix.combine([
-    'resources/assets/css/sidebar.css'
+    'resources/assets/css/sidebar.css',
+    'resources/assets/css/custom.css',
 ], 'public/css/all.css');

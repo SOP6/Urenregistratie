@@ -96,8 +96,8 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
-                            <textarea name="password" class="form-control" v-model="newItem.password">
-              </textarea>
+                            <input type="password" name="password" class="form-control" v-model="newItem.password">
+              </input>
                             <span v-if="formErrors['password']" class="error text-danger">
                 @{{ formErrors['password'] }}
               </span>
@@ -144,13 +144,6 @@
                             <span v-if="formErrorsUpdate['email']" class="error text-danger">
               @{{ formErrorsUpdate['email'] }}
             </span>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <textarea name="password" class="form-control" v-model="newItem.password">
-              </textarea>
-                                <span v-if="formErrors['password']" class="error text-danger">
-                @{{ formErrors['password'] }}
-              </span>
                             </div>
                         </div>
                         <div class="form-group">

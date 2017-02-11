@@ -25,8 +25,7 @@
     <body>
         @include('partials.sidebar')
 
-        //style="margin-left:300px;"
-            <div class="container" class="mastercontainer"  id="manage-vue">
+            <div class="container mastercontainer" id="manage-vue">
                 @yield('content')
             </div>
 

@@ -9,6 +9,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 use Response;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -17,9 +18,16 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function usersCrud(){
-        return view('/userscrud/index');
+        if(Auth::check()){
+            return view('/userscrud/index')->with('userinfo' , User::find(Auth::id()));
+        }
+
     }
 
     public function index()
@@ -61,29 +69,7 @@ class UsersController extends Controller
         return response()->json($create);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
+     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

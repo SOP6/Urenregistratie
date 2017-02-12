@@ -64,7 +64,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title" id="myModalLabel">Create New Post</h4>
+                    <h4 class="modal-title" id="myModalLabel">Log Hours</h4>
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data" v-on:submit.prevent="createItem">
@@ -82,7 +82,6 @@
                             <span v-if="formErrors['hours']" class="error text-danger">
                 @{{ formErrors['hours'] }}
               </span>
-                            <hidden  name="user_id" v-model="newItem.user_id"></hidden>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit</button>

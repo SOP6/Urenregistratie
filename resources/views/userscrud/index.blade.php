@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="form-group row add">
-        <div class="well" style="width:150%;">
+        <div class="well headerwell">
             <div class="row">
             <div class="col-md-12">
                 <h1>Manage Users</h1>

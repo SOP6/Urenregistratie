@@ -7,7 +7,8 @@ use App\Logs;
 use App\Http\Requests;
 use Validator;
 use Response;
-use App\Users;
+use App\User;
+use Auth;
 
 class LogsController extends Controller
 {
@@ -43,15 +44,6 @@ class LogsController extends Controller
         return response()->json($response);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -65,31 +57,11 @@ class LogsController extends Controller
             'work_description' => 'required',
             'hours' => 'required'
         ]);
-
-        $create = Logs::create($request->all());
+        $data = $request->all();
+        $data['user_id'] = Auth::id();
+        $create = Logs::create($data);
+//        $create = Logs::create($request->all()->put('user_id', Auth::id()));
         return response()->json($create);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**

@@ -19,7 +19,6 @@ class CreateLogsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('hours', 2,1);
-            $table->enum('roles', array('manager', 'employee'));
             $table->string('work_description');
             $table->rememberToken();
             $table->timestamps();

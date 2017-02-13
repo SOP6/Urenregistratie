@@ -11,18 +11,19 @@
 |
 */
 
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('/users', 'UsersController@usersCrud');
+        Route::resource('useritems', 'UsersController');
+    });
 
-Route::group(['middleware' => ['web']], function() {
-    Route::get('/users', 'UsersController@usersCrud');
-    Route::resource('useritems','UsersController');
-});
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('/', 'LogsController@logsCrud');
+        Route::resource('logitems', 'LogsController');
+    });
 
-Route::group(['middleware' => ['web']], function() {
-    Route::get('/', 'LogsController@logsCrud');
-    Route::resource('logitems','LogsController');
-});
+    Route::get('/logout', 'UsersController@logout');
 
-Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index');
+    Auth::routes();
 
+    Route::get('/dashboard', 'HomeController@index');

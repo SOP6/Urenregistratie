@@ -14,7 +14,7 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newItem : {'work_description':'','hours':'', 'user_id' : ''},
-        fillItem : {'work_description':'','hours':'', 'user_id' : '', 'id' : ''},
+        fillItem : {'work_description':'','hours':'', 'id' : ''},
     },
     computed: {
         isActived: function() {
@@ -54,7 +54,7 @@ new Vue({
             var input = this.newItem;
             this.$http.post('/logitems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'word_description':'','hours':'', 'user_id': ''};
+            this.newItem = {'word_description':'','hours':''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {
@@ -68,15 +68,13 @@ new Vue({
         });
         },
         editItem: function(item) {
-            this.fillItem.first_name = item.first_name;
-            this.fillItem.last_name = item.last_name;
-            this.fillItem.email = item.email;
-            this.fillItem.id = item.id;
-            this.fillItem.user_id = item.user_id;
+            this.fillItem.work_description = item.work_description;
+            this.fillItem.hours = item.hours;
             $("#edit-item").modal('show');
         },
         updateItem: function(item) {
             var input = this.fillItem;
+            console.log(item);
             this.$http.put('/logitems/'+item.id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
             this.newItem = {'work_description':'','hours':'','user_id' : '','id':''};

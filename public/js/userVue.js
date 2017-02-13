@@ -14,7 +14,7 @@ new Vue({
         formErrors:{},
         formErrorsUpdate:{},
         newItem : {'first_name':'','last_name':'', 'email' : '' , 'password' : ''},
-        fillItem : {'first_name':'','last_name':'','email' : '' , 'id':''}
+        fillItem : {'first_name':'','last_name':'','email' : '' , 'id' : ''}
     },
     computed: {
         isActived: function() {

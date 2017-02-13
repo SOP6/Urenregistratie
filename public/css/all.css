@@ -163,3 +163,8 @@ body {
     margin-bottom: 0px!important;
     width:150%;
 }
+
+.btn-logout{
+    width: 100%!important;
+    border-right: 3px solid #2e353d!important;
+}

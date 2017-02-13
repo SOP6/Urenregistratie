@@ -15,7 +15,7 @@
             <table class="table table-borderless">
                 <tr>
                     <th>Work description</th>
-                    <th>hours</th>
+                    <th>Hours</th>
                 </tr>
                 <tr v-for="item in items">
                     <td>@{{ item.work_description }}</td>
@@ -102,17 +102,17 @@
                     <h4 class="modal-title" id="myModalLabel">Edit Users</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem.id)">
+                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem)">
                         <div class="form-group">
                             <label for="work_description">work description</label>
-                            <input type="text" name="work_description" class="form-control" v-model="newItem.work_description" />
+                            <input type="text" name="work_description" class="form-control" v-model="fillItem.work_description" />
                             <span v-if="formErrors['work_description']" class="error text-danger">
                 @{{ formErrors['work_description'] }}
               </span>
                         </div>
                         <div class="form-group">
                             <label for="hours">Amount(hours)</label>
-                            <textarea name="hours" class="form-control" v-model="newItem.hours">
+                            <textarea name="hours" class="form-control" v-model="fillItem.hours">
               </textarea>
                             <span v-if="formErrors['hours']" class="error text-danger">
                 @{{ formErrors['hours'] }}

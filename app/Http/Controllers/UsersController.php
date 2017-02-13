@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Response;
 use Auth;
@@ -21,6 +22,11 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->intended('/');
     }
 
     public function usersCrud(){

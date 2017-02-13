@@ -7,7 +7,6 @@ use App\Logs;
 use App\Http\Requests;
 use Validator;
 use Response;
-use App\User;
 use Auth;
 
 class LogsController extends Controller
@@ -19,7 +18,7 @@ class LogsController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function logsCrud(){
@@ -60,7 +59,6 @@ class LogsController extends Controller
         $data = $request->all();
         $data['user_id'] = Auth::id();
         $create = Logs::create($data);
-//        $create = Logs::create($request->all()->put('user_id', Auth::id()));
         return response()->json($create);
     }
 

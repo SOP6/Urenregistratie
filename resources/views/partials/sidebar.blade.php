@@ -24,6 +24,9 @@
                   <i class="fa fa-user fa-lg"></i> Profile
                   </a>
                   </li>
+                <li>
+                    <a href="{{ action('UsersController@logout') }}" class="btn btn-primary btn-logout" style="a">Logout</a>
+                </li>
             </ul>
      </div>
 </div>

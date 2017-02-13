@@ -1,7 +1,13 @@
 Vue.http.headers.common['X-CSRF-TOKEN'] = $("#token").attr("value");
 new Vue({
     el :'#manage-vue',
-    data :{
+    data : {
+        selectOptions: [{
+            name: 'manager',
+        },
+{
+    name: 'scripter'
+} ],
         items: [],
         pagination: {
             total: 0,
@@ -13,8 +19,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newItem : {'first_name':'','last_name':'', 'email' : '' , 'password' : ''},
-        fillItem : {'first_name':'','last_name':'','email' : '' , 'id' : ''}
+        newItem : {'first_name':'','last_name':'', 'email' : '' , 'password' : '' , 'roles' : ''},
+        fillItem : {'first_name':'','last_name':'','email' : '' , 'id' : '' , 'roles' : ''}
     },
     computed: {
         isActived: function() {
@@ -54,7 +60,7 @@ new Vue({
             var input = this.newItem;
             this.$http.post('/useritems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'', 'email': '' , 'password' : ''};
+            this.newItem = {'first_name':'','last_name':'', 'email': '' , 'password' : '' , 'roles' : ''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {
@@ -72,13 +78,14 @@ new Vue({
             this.fillItem.last_name = item.last_name;
             this.fillItem.email = item.email;
             this.fillItem.id = item.id;
+            this.fillItem.roles = item.roles;
             $("#edit-item").modal('show');
         },
         updateItem: function(item) {
             var input = this.fillItem;
             this.$http.put('/useritems/'+item.id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'','email' : '','id':''};
+            this.newItem = {'first_name':'','last_name':'','email' : '','id':'' , 'role' : ''};
             $("#edit-item").modal('hide');
             toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

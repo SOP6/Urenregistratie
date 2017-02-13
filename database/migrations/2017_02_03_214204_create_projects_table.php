@@ -16,7 +16,6 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             /**Always user unsigned value for auto incrementing references**/
-            $table->integer('user_id')->unsigned();
             $table->string('name');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->rememberToken();

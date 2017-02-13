@@ -14,11 +14,7 @@ use Auth;
 
 class UsersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -33,7 +29,6 @@ class UsersController extends Controller
         if(Auth::check()){
             return view('/userscrud/index')->with('userinfo' , User::find(Auth::id()));
         }
-
     }
 
     public function index()

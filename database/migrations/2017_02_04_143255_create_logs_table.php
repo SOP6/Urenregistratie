@@ -20,7 +20,6 @@ class CreateLogsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->decimal('hours', 2,1);
             $table->string('work_description');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

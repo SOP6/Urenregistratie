@@ -18,11 +18,13 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Role</th>
                 </tr>
                 <tr v-for="item in items">
                     <td>@{{ item.first_name }}</td>
                     <td>@{{ item.last_name }}</td>
                     <td>@{{ item.email }}</td>
+                    <td>@{{ item.roles }}</td>
                     <td>
                         <button class="edit-modal btn btn-warning" @click.prevent="editItem(item)">
                             <span class="glyphicon glyphicon-edit"></span> Edit
@@ -103,6 +105,16 @@
               </span>
                         </div>
                         <div class="form-group">
+                            <label for="roles">Role</label>
+                            <select required id="dropDown" v-model="newItem.roles" >
+                                <option>Select here</option>
+                                <option  class="form-control"  v-for="selectOption in selectOptions" :value="selectOption.name">@{{ selectOption.name }}</option>
+                            </select>
+                            <span v-if="formErrors['roles']" class="error text-danger">
+                @{{ formErrors['roles'] }}
+              </span>
+                        </div>
+                        <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
@@ -145,6 +157,15 @@
               @{{ formErrorsUpdate['email'] }}
             </span>
                             </div>
+                        <div class="form-group">
+                            <label for="Role">Role</label>
+                            <ui-dropdown  type="search selection"
+                                          label="Role"
+                                          options="selectOptions" v-model="newItem.role">
+                            </ui-dropdown>
+                            <span v-if="formErrors['role']" class="error text-danger">
+                @{{ formErrors['role'] }}
+              </span>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Submit</button>

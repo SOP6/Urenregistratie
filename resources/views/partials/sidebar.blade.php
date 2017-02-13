@@ -12,18 +12,24 @@
                   <i class="fa fa-dashboard fa-lg"></i> Dashboard
                   </a>
                 </li>
+                @if(  Auth::user()->roles  == 'manager')
+                    {{--<h1>{{ Auth::user()->roles }}</h1>--}}
+                {{--console.log({{ Auth::user()->roles }});--}}
                 <li data-toggle="collapse" data-target="#service" class="collapsed">
                   <a href="#"><i class="fa fa-globe fa-lg"></i> Users <span class="arrow"></span></a>
-                </li>  
+                </li>
+
                 <ul class="sub-menu collapse" id="service">
                   <li><a href="{{ url('users') }}">Manage users</a></li>
                   <li><a href="{{ url('users') }}">Create user group</a></li>
                 </ul>
+
                  <li>
                   <a href="{{ url('users') }}">
                   <i class="fa fa-user fa-lg"></i> Profile
                   </a>
                   </li>
+                @endif
                 <li>
                     <a href="{{ action('UsersController@logout') }}" class="btn btn-primary btn-logout" style="a">Logout</a>
                 </li>

@@ -70,6 +70,7 @@ new Vue({
         editItem: function(item) {
             this.fillItem.work_description = item.work_description;
             this.fillItem.hours = item.hours;
+            this.fillItem.id = item.id;
             $("#edit-item").modal('show');
         },
         updateItem: function(item) {

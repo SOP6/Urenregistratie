@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Validator;
 use Response;
 use Auth;
+use App\Projects;
 
 class LogsController extends Controller
 {
@@ -75,6 +76,7 @@ class LogsController extends Controller
             'work_description' => 'required',
             'hours' => 'required'
         ]);
+
 
         $edit = Logs::find($id)->update($request->all());
         return response()->json($edit);

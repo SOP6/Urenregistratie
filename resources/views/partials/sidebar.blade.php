@@ -13,19 +13,17 @@
                   </a>
                 </li>
                 @if(  Auth::user()->roles  == 'manager')
-                    {{--<h1>{{ Auth::user()->roles }}</h1>--}}
-                {{--console.log({{ Auth::user()->roles }});--}}
                 <li data-toggle="collapse" data-target="#service" class="collapsed">
                   <a href="#"><i class="fa fa-globe fa-lg"></i> Users <span class="arrow"></span></a>
                 </li>
 
                 <ul class="sub-menu collapse" id="service">
                   <li><a href="{{ url('users') }}">Manage users</a></li>
-                  <li><a href="{{ url('users') }}">Create user group</a></li>
+                  <li><a href="{{ url('projects') }}">Manage Projects</a></li>
                 </ul>
 
                  <li>
-                  <a href="{{ url('users') }}">
+                  <a href="{{ url('profile') }}">
                   <i class="fa fa-user fa-lg"></i> Profile
                   </a>
                   </li>

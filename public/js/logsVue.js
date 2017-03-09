@@ -13,8 +13,8 @@ new Vue({
         offset: 4,
         formErrors:{},
         formErrorsUpdate:{},
-        newItem : {'work_description':'','hours':'', 'user_id' : ''},
-        fillItem : {'work_description':'','hours':'', 'id' : ''},
+        newItem : {'work_description':'','hours':'', 'user_id' : '' , 'project' : ''},
+        fillItem : {'work_description':'','hours':'', 'id' : '', 'project' : ''},
     },
     computed: {
         isActived: function() {
@@ -54,7 +54,7 @@ new Vue({
             var input = this.newItem;
             this.$http.post('/logitems',input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'word_description':'','hours':''};
+            this.newItem = {'word_description':'','hours':'' , 'project' : ''};
             $("#create-item").modal('hide');
             toastr.success('Post Created Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {
@@ -78,7 +78,7 @@ new Vue({
             console.log(item);
             this.$http.put('/logitems/'+item.id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'work_description':'','hours':'','user_id' : '','id':''};
+            this.newItem = {'work_description':'','hours':'','user_id' : '','id':'' , 'project' : ''};
             $("#edit-item").modal('hide');
             toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

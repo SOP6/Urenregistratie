@@ -2,6 +2,10 @@
     margin-left: 300px!important;
 }
 
+#dropDown{
+    display: block!important;
+}
+
 @media (max-width: 767px){
     .mastercontainer{
         margin-left: 0px!important;
@@ -19,4 +23,34 @@
 .btn-logout{
     width: 100%!important;
     border-right: 3px solid #2e353d!important;
+}
+
+select {
+    margin: 50px;
+    border: 1px solid #111;
+    background: transparent;
+    width: 150px;
+    padding: 5px 35px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+/* CAUTION: IE hackery ahead */
+
+
+select::-ms-expand {
+    display: none; /* remove default arrow in IE 10 and 11 */
+}
+
+/* target Internet Explorer 9 to undo the custom arrow */
+@media screen and (min-width:0\0) {
+    select {
+        background:none\9;
+        padding: 5px\9;
+    }
 }

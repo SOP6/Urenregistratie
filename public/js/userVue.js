@@ -81,11 +81,11 @@ new Vue({
             this.fillItem.roles = item.roles;
             $("#edit-item").modal('show');
         },
-        updateItem: function(item) {
+        updateItem: function(id) {
             var input = this.fillItem;
-            this.$http.put('/useritems/'+item.id,input).then((response) => {
+            this.$http.put('/useritems/'+id,input).then((response) => {
                 this.changePage(this.pagination.current_page);
-            this.newItem = {'first_name':'','last_name':'','email' : '','id':'' , 'role' : ''};
+            this.newItem = {'first_name':'','last_name':'', 'email': '' , 'password' : '' , 'roles' : ''};
             $("#edit-item").modal('hide');
             toastr.success('Item Updated Successfully.', 'Success Alert', {timeOut: 5000});
         }, (response) => {

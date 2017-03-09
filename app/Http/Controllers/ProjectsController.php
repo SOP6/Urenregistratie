@@ -5,39 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use App\Projects;
+use App\Users;
 use App\Http\Requests;
 use Validator;
 use Response;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 
 class ProjectsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    public function UsersCrud(){
-        return view('/projectscrud/index')
+    public function ProjectsCrud(){
+        $projects = Projects::all();
+        return view('/projectscrud/index')->with("projects" , $projects);
     }
 
     public function index()
     {
-        $items = Projects::latest()->paginate(5);
 
-        $response = [
-            'pagination' => [
-                'total' => $items->total(),
-                'per_page' => $items->perPage(),
-                'current_page' => $items->currentPage(),
-                'last_page' => $items->lastPage(),
-                'from' => $items->firstItem(),
-                'to' => $items->lastItem()
-            ],
-            'data' => $items
-        ];
-        return response()->json($response);
     }
 
     /**
@@ -45,9 +41,13 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+           'name' => 'required'
+        ]);
+        $create = Projects::create($request->all());
+        return Redirect::back()->with('message','Operation Successful !');
     }
 
     /**
@@ -64,7 +64,7 @@ class ProjectsController extends Controller
             'email' => 'required'
         ]);
 
-        $create = User::create($request->all());
+        $create = Projects::create($request->all());
         return response()->json($create);
     }
 
@@ -105,7 +105,7 @@ class ProjectsController extends Controller
             'email' => 'required'
         ]);
 
-        $edit = User::find->($id)->update($request->all());
+        $edit = Projects::find($id)->update($request->all());
         return response()->json($edit);
     }
 
@@ -115,9 +115,9 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        User::find($id)->delete();
-        return response->json(['done']);
+        Projects::find($id)->delete();
+        return Redirect::back()->with('message','Operation Successful !');
     }
 }

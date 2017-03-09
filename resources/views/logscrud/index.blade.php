@@ -2,7 +2,7 @@
 @extends('master')
 @section('content')
     <div class="form-group row add">
-        <div class="well" style="width:150%;">
+        <div class="well headerwell" style="width:150%;">
             <div class="row">
         <div class="col-md-12">
             <h1>Manage Logs</h1>
@@ -11,6 +11,7 @@
         </div>
     </div>
     <div class="row">
+        <div class="col col-md-12">
         <div class="table-responsive">
             <table class="table table-borderless">
                 <tr>
@@ -20,6 +21,7 @@
                 <tr v-for="item in items">
                     <td>@{{ item.work_description }}</td>
                     <td>@{{ item.hours}}</td>
+                    @if(Auth::user()->roles === "manager")
                     <td>
                         <button class="edit-modal btn btn-warning" @click.prevent="editItem(item)">
                             <span class="glyphicon glyphicon-edit"></span> Edit
@@ -29,7 +31,9 @@
                         </button>
                     </td>
                 </tr>
+                @endif
             </table>
+        </div>
             <div class="col-md-12">
                 <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
                     Log new hours

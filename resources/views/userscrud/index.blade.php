@@ -12,6 +12,7 @@
         </div>
     </div>
     <div class="row">
+        <div class="col col-md-12">
         <div class="table-responsive">
             <table class="table table-borderless">
                 <tr>
@@ -35,6 +36,7 @@
                     </td>
                 </tr>
             </table>
+        </div>
             <div class="col-md-12">
                 <button type="button" data-toggle="modal" data-target="#create-item" class="btn btn-primary">
                     Create New User
@@ -107,7 +109,7 @@
                         <div class="form-group">
                             <label for="roles">Role</label>
                             <select required id="dropDown" v-model="newItem.roles" >
-                                <option>Select here</option>
+                                <option value="" disabled selected>Select your option</option>
                                 <option  class="form-control"  v-for="selectOption in selectOptions" :value="selectOption.name">@{{ selectOption.name }}</option>
                             </select>
                             <span v-if="formErrors['roles']" class="error text-danger">
@@ -133,7 +135,7 @@
                     <h4 class="modal-title" id="myModalLabel">Edit Users</h4>
                 </div>
                 <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem)">
+                    <form method="post" enctype="multipart/form-data" v-on:submit.prevent="updateItem(fillItem.id)">
                         <div class="form-group">
                             <label for="first_name">first name:</label>
                             <input type="text" name="first_name" class="form-control" v-model="fillItem.first_name" />
@@ -158,13 +160,13 @@
             </span>
                             </div>
                         <div class="form-group">
-                            <label for="Role">Role</label>
-                            <ui-dropdown  type="search selection"
-                                          label="Role"
-                                          options="selectOptions" v-model="newItem.role">
-                            </ui-dropdown>
-                            <span v-if="formErrors['role']" class="error text-danger">
-                @{{ formErrors['role'] }}
+                            <label for="roles">Role</label>
+                            <select required id="dropDown" v-model="fillItem.roles" >
+                                <option value="" disabled selected>Select your option</option>
+                                <option  class="form-control"  v-for="selectOption in selectOptions" :value="selectOption.name">@{{ selectOption.name }}</option>
+                            </select>
+                            <span v-if="formErrors['roles']" class="error text-danger">
+                @{{ formErrors['roles'] }}
               </span>
                         </div>
                         <div class="form-group">

@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Validator;
 use Response;
 use Auth;
+use App\Contracts;
 
 class UsersController extends Controller
 {
@@ -47,6 +48,18 @@ class UsersController extends Controller
             'data' => $items
         ];
         return response()->json($response);
+    }
+
+    public function addContract(Request $request)
+    {
+        $this->validate($request, [
+            "effective_date" => "required",
+            "expire_date" => "required",
+            "user_id" => "required"
+        ]);
+
+        $create = Contracts::create($request->all());
+        return response()->json($create);
     }
 
 

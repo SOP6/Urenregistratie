@@ -19,7 +19,6 @@
     <body>
         @include('partials.sidebar')
             <div class="container mastercontainer" id="manage-vue">
-                    {{--print_r({{ $userinfo }}  }});--}}
                 @yield('content')
             </div>
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>

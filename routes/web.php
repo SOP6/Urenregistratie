@@ -17,12 +17,21 @@
     });
 
     Route::group(['middleware' => ['web']], function () {
+        Route::get('/projects', 'ProjectsController@projectsCrud');
+        Route::post('/projectitems/create' , 'ProjectsController@create');
+        Route::post('/projectitems/{id}' , 'ProjectsController@delete');
+        Route::resource('projectitems', 'ProjectsController');
+    });
+
+    Route::group(['middleware' => ['web']], function () {
         Route::get('/', 'LogsController@logsCrud');
         Route::resource('logitems', 'LogsController');
     });
 
     Route::get('/logout', 'UsersController@logout');
 
+    Route::get('/profile', 'ProfileController@index');
+    Route::post('/profile' , 'ProfileController@update');
 
     Auth::routes();
 

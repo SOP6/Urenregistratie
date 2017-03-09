@@ -21,7 +21,9 @@ class LogsController extends Controller
     {
         $this->middleware('auth');
     }
-
+/**
+TestComment
+**/
     public function logsCrud(){
         return view('/logscrud/index');
     }
